@@ -18,16 +18,29 @@ const aliyunAmqpCli = require('aliyun-amqp-node-cli');
 
 // 阿里云账户配置信息
 const config = {
+    /**
+     * Access Key ID.
+     */
     accessKeyId: '${accessKeyId}',
+    /**
+     * Access Key Secret.
+     */
     accessKeySecret: '${accessKeySecret}',
+    /**
+     * 资源owner账号（主账号）
+     */
     resourceOwnerId: '${resourceOwnerId}',
+    /**
+     * security temp token. (optional)
+     */
+    securityToken: '${securityToken}',
 };
 
 // 将配置传递 获取新连接对象
 const amqplib = aliyunAmqpCli(config)(require('amqplib'));
 
 // 连接amqp服务器
-const open = amqplib.connect('amqp://${endPointer}/${vhost}', {
+const open = amqplib.connect('amqp://${endPointer}/${vhost}?heartbeat=${heartbeat}&channelMax=${channelMax}&frameMax=${frameMax}&locale=${locale}', {
   timeout: 300 * 1000,
 });
 

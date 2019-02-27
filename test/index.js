@@ -11,7 +11,7 @@ const config = {
 const amqplib = aliyunAmqpCli(config)(require('amqplib'));
 
 // 连接
-const open = amqplib.connect('amqp://${endPointer}/${vhost}', {
+const open = amqplib.connect('amqp://${endPointer}/${vhost}?heartbeat=${heartbeat}&channelMax=${channelMax}&frameMax=${frameMax}&locale=${locale}', {
   timeout: 300 * 1000,
 });
 
